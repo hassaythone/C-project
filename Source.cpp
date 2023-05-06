@@ -19,15 +19,19 @@ using namespace std;
 
 int main()
 {
-  
+
     // Create game window
     sf::RenderWindow window(sf::VideoMode(1200, 1000), "Dino Game");
     window.setVisible(true);
-
+    // Load game resources
+    sf::Music music;
+    if (!music.openFromFile("images/audio.ogg")) {
+        // Handle error
+    }
     // Create game objects
     Game game;
     Clock clock;
-    Menu menu(window);
+    Menu menu(window,music);
     Dino dino;
     Enemy enemy;
     Super_Enemy superEnemy;
@@ -36,54 +40,34 @@ int main()
     GameOver gameOver(window);
     Level level;
 
-    // Load game resources
-    sf::Music music;
-    if (!music.openFromFile("images/audio.ogg")) {
-        // Handle error
-    }
-    music.setLoop(true);
-    music.play();
-    // Game loop
+   
     
+    // Game loop
+music.play();
     while (window.isOpen()) {
         // Handle events
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-            else if (event.type == sf::Event::KeyPressed) {
-                if (event.key.code == sf::Keyboard::M) {
-                    if (music.getStatus() == sf::Music::Playing) {
-                        music.pause();
-                    }
-                    else {
-                        music.play();
-                    }
-                }
-            }
-        }
+        
         clock.update();
         clock.draw(window);
         window.display();
-       
+
         // Handle menu events
-        
+
         menu.displayMenu();
-       
+
         if (menu.isVisible()) {
-            
+
             menu.processEvents();
-            
-            
+
+
             if (menu.isOptionSelected()) {
                 menu.hide();
                 window.clear();
                 game.start();
-                
+
             }
         }
-        
+
         // Handle game events
         else if (game.isRunning()) {
 
@@ -99,21 +83,21 @@ int main()
                 scoreboard.incrementScore();
                 game.update(enemy, superEnemy, bullet);
             }
-            
+
             if (scoreboard.getScore() >= level.getScoreThreshold()) {
                 level.increment();
                 enemy.increaseSpeed();
                 superEnemy.increaseSpeed();
                 superEnemy.changeSize();
             }
-            game.update( enemy,  superEnemy,  bullet);
+            game.update(enemy, superEnemy, bullet);
             window.clear();
             dino.draw(window);
             enemy.draw(window);
             superEnemy.draw(window);
             bullet.draw(window);
             scoreboard.draw(window);
-            
+
         }
         // Handle game over events
         else if (gameOver.isVisible()) {
@@ -129,12 +113,8 @@ int main()
             }
         }
         // Handle window events
+
         
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
     }
 
     return 0;

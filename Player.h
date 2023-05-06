@@ -14,8 +14,7 @@ public:
     void moveLeft();
     void moveRight();
     sf::FloatRect getBounds();
-
-private:
+    private:
     sf::RenderWindow& m_window;
     sf::RectangleShape m_shape;
     float m_speed;

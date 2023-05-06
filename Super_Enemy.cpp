@@ -61,6 +61,6 @@ bool Super_Enemy::isCollidingWith(const sf::Sprite& sprite)  {
 void Super_Enemy::draw(sf::RenderWindow& window) const {
     window.draw(m_sprite);
 }
-sf::Sprite Super_Enemy::getSprite() const { // added member function
+sf::Sprite Super_Enemy::getSprite() const { 
     return m_sprite;
 }

@@ -29,7 +29,6 @@
     <ClCompile Include="IEnemy.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scoreboard.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Super_Enemy.cpp" />
@@ -47,7 +46,6 @@
     <ClInclude Include="IEnemy.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Player.h" />
     <ClInclude Include="Scoreboard.h" />
     <ClInclude Include="Super_Enemy.h" />
   </ItemGroup>

@@ -7,7 +7,7 @@ void Level::increment() {
 }
 
 int Level::getScoreThreshold() const {
-    return m_level * 1000;
+    return m_level ;
 }
 
 void Level::reset() {
